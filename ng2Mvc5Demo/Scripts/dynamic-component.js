@@ -24,10 +24,13 @@ var DynamicComponent = (function () {
                 return;
             }
             // Inputs need to be in the following format to be resolved properly
-            var inputProviders = Object.keys(data.inputs).map(function (inputName) { return { provide: inputName, useValue: data.inputs[inputName] }; });
+            var inputProviders = Object.keys(data.inputs).map(function (inputName) {
+                return { provide: inputName, useValue: data.inputs[inputName] };
+            });
             var resolvedInputs = core_1.ReflectiveInjector.resolve(inputProviders);
             // We create an injector out of the data we want to pass down and this components injector
-            var injector = core_1.ReflectiveInjector.fromResolvedProviders(resolvedInputs, this.dynamicComponentContainer.parentInjector);
+            var injector = core_1.ReflectiveInjector
+                .fromResolvedProviders(resolvedInputs, this.dynamicComponentContainer.parentInjector);
             // We create a factory out of the component we want to create
             var factory = this.resolver.resolveComponentFactory(data.component);
             // We create the component using the factory and the injector
@@ -36,9 +39,10 @@ var DynamicComponent = (function () {
             this.dynamicComponentContainer.insert(component.hostView);
             // We can destroy the old component is we like by calling destroy
             if (this.currentComponent) {
-                this.currentComponent.destroy();
+                //this.currentComponent.destroy();
             }
             this.currentComponent = component;
+            //this.currentComponent.add(component);
         },
         enumerable: true,
         configurable: true
@@ -63,4 +67,3 @@ DynamicComponent = __decorate([
     __metadata("design:paramtypes", [core_1.ComponentFactoryResolver])
 ], DynamicComponent);
 exports.default = DynamicComponent;
-//# sourceMappingURL=dynamic-component.js.map

@@ -15,17 +15,21 @@ export default class DynamicComponent {
 
     // component: Class for the component you want to create
     // inputs: An object with key/value pairs mapped to input name/input value
-    @Input() set componentData(data: { component: any, inputs: any }) {
+    @Input()
+    set componentData(data: { component: any, inputs: any }) {
         if (!data) {
             return;
         }
 
         // Inputs need to be in the following format to be resolved properly
-        let inputProviders = Object.keys(data.inputs).map((inputName) => { return { provide: inputName, useValue: data.inputs[inputName] }; });
+        let inputProviders = Object.keys(data.inputs).map((inputName) => {
+            return { provide: inputName, useValue: data.inputs[inputName] };
+        });
         let resolvedInputs = ReflectiveInjector.resolve(inputProviders);
 
         // We create an injector out of the data we want to pass down and this components injector
-        let injector = ReflectiveInjector.fromResolvedProviders(resolvedInputs, this.dynamicComponentContainer.parentInjector);
+        let injector = ReflectiveInjector
+            .fromResolvedProviders(resolvedInputs, this.dynamicComponentContainer.parentInjector);
 
         // We create a factory out of the component we want to create
         let factory = this.resolver.resolveComponentFactory(data.component);
@@ -38,10 +42,11 @@ export default class DynamicComponent {
 
         // We can destroy the old component is we like by calling destroy
         if (this.currentComponent) {
-            this.currentComponent.destroy();
+            //this.currentComponent.destroy();
         }
 
         this.currentComponent = component;
+        //this.currentComponent.add(component);
     }
 
     constructor(private resolver: ComponentFactoryResolver) {

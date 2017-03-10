@@ -34,4 +34,3 @@ ThingComponent = __decorate([
     __metadata("design:paramtypes", [core_1.Injector])
 ], ThingComponent);
 exports.ThingComponent = ThingComponent;
-//# sourceMappingURL=thing.component.js.map
