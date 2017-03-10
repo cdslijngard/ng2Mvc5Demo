@@ -1,4 +1,7 @@
 ﻿import { Component } from '@angular/core';
+import { ThingComponent } from './thing.component';
+
+
 @Component({
     selector: 'my-app',
     template: `    
@@ -9,10 +12,25 @@
         {{ skl }}
       </li>
     </ul>
+
+    <button (click)="createThingComponent()">Create Things!</button>
+    <dynamic-component [componentData]="componentData"></dynamic-component>
   `
 })
 export class AppComponent {
     title = 'ASP.NET MVC 5 with Angular 2';
     skills = ['MVC 5', 'Angular 2', 'TypeScript', 'Visual Studio 2015'];
     myskills = this.skills[1];
+
+    thing = 0;
+    componentData = null;
+
+    createThingComponent() {
+        this.componentData = {
+            component: ThingComponent,
+            inputs: {
+                thing: this.thing + 1
+            }
+        };
+    }
 }
