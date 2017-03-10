@@ -38,7 +38,7 @@ export default class DynamicComponent {
 
         // We can destroy the old component is we like by calling destroy
         if (this.currentComponent) {
-            //this.currentComponent.destroy();
+            this.currentComponent.destroy();
         }
 
         this.currentComponent = component;

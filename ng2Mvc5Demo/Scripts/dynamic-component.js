@@ -36,7 +36,7 @@ var DynamicComponent = (function () {
             this.dynamicComponentContainer.insert(component.hostView);
             // We can destroy the old component is we like by calling destroy
             if (this.currentComponent) {
-                //this.currentComponent.destroy();
+                this.currentComponent.destroy();
             }
             this.currentComponent = component;
         },

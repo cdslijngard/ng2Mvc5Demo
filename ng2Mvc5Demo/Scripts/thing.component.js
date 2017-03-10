@@ -13,10 +13,11 @@ var core_1 = require("@angular/core");
 var ThingComponent = (function () {
     function ThingComponent(injector) {
         this.injector = injector;
-        this.thing = 0;
         // Increase count on each load
-        this.thing = this.getRandomInt(0, 10);
+        this.thing = this.injector.get('thing');
     }
+    ThingComponent.prototype.closeComponent = function () {
+    };
     ThingComponent.prototype.getRandomInt = function (min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
@@ -27,7 +28,8 @@ var ThingComponent = (function () {
 ThingComponent = __decorate([
     core_1.Component({
         selector: 'thing-comp',
-        template: "<p>ThingComponent: {{ thing }}</p>"
+        templateUrl: './tsScripts/thing.component.html'
+        //template: `<p>ThingComponent: {{ thing }}</p>`        
     }),
     __metadata("design:paramtypes", [core_1.Injector])
 ], ThingComponent);
