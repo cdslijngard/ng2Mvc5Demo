@@ -13,10 +13,15 @@ var core_1 = require("@angular/core");
 var ThingComponent = (function () {
     function ThingComponent(injector) {
         this.injector = injector;
-        this.thing = 8;
+        this.thing = 0;
         // Increase count on each load
-        this.thing = this.thing + 1;
+        this.thing = this.getRandomInt(0, 10);
     }
+    ThingComponent.prototype.getRandomInt = function (min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min;
+    };
     return ThingComponent;
 }());
 ThingComponent = __decorate([
